@@ -8,7 +8,7 @@ import { IoSearchOutline } from "react-icons/io5";
 export default function Navbar() {
   return (
     <nav className="border-b-[1px] border-gray-300">
-      <div className="w-[79%] h-[82px] m-auto flex justify-between items-center">
+      <div className="w-[94rem] h-[82px] m-auto flex justify-between items-center">
         <div className="flex justify-between items-center">
           <div className="me-24">
             <img src={boatLogo} alt="" height={80} width={80} />
