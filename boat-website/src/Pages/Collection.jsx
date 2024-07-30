@@ -1,19 +1,24 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoStar } from "react-icons/io5";
+import { AddToCartContext, getDataContext } from "../ContextApi/AddToCartContext";
 
 export default function Collection() {
   let { id } = useParams();
+  localStorage.setItem("collection", id)
   const [productData, setProductData] = useState([]);
   const [title, setTitle] = useState("")
+  const {postData} = useContext(AddToCartContext)
+  const {GetAddCartData} = useContext(getDataContext)
   const getData = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/SliderData/${id}`
       );
       setTitle(response.data.title)
       setProductData(response.data.products);
+      GetAddCartData()
     } catch (error) {
       console.log(error);
     }
@@ -88,7 +93,7 @@ export default function Collection() {
                   </h4>
                 </div>
                 </NavLink>
-                <button className="bg-black text-white w-full py-2 font-medium text-[15px] rounded-xl">
+                <button onClick={()=>postData(id, ele.id, GetAddCartData)} className="bg-black text-white w-full py-2 font-medium text-[15px] rounded-xl">
                   Add To Cart
                 </button>
               </div>

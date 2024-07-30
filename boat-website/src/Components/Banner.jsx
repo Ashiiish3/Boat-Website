@@ -48,7 +48,10 @@ export default function Banner() {
         </div>
       </div>
       <MonsoonFest />
-      <div>
+      <div className="w-[94rem] m-auto my-10">
+        <h1 className="text-start text-2xl font-medium mb-5 tracking-wide">
+            Explore <span className="font-extrabold">Bestsellers</span>
+        </h1>
         <div className="w-[94rem] grid grid-cols-5 gap-3 m-auto mt-4">
           {sliderData.map((ele, index) => (
             <div key={index}>
