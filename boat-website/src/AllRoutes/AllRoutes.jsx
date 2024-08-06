@@ -10,7 +10,7 @@ export default function AllRoutes() {
   return (
     <Routes>
         <Route path='/' element={<Home />} ></Route>
-        <Route path='/Login' element={<Login />} ></Route>
+        {/* <Route path='/Login' element={<Login />} ></Route> */}
         <Route path='/Collection/:id' element={<Collection />} ></Route>
         <Route path='/Description/:id' element={<Description />} ></Route>
         <Route path='/AddToCart' element={<AddToCart />} ></Route>

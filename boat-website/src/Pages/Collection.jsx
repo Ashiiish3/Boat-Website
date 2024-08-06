@@ -59,7 +59,7 @@ export default function Collection() {
               <div className="w-[190px] h-[190px]">
                 <NavLink to={`/Description/${ele.id}`}>
                   <img
-                    src={ele.image_url}
+                    src={ele.image}
                     alt=""
                     className="w-full h-full object-cover rounded-lg"
                   />

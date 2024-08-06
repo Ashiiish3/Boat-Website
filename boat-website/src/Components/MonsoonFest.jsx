@@ -29,8 +29,8 @@ export default function MonsoonFest() {
     <div>
       <div className="w-[94rem] m-auto my-5">
         <h1 className="text-start text-2xl font-medium mb-5 tracking-wide">
-          <Link to={`/Collection/wireless-earbuds`}>
-            Monsoon <span className="font-extrabold">Fest</span>
+          <Link to={`/Collection/wireless-earbuds`} className="relative">
+            Monsoon <span className="UnderLine font-extrabold">Fest</span>
           </Link>
         </h1>
         <div className="grid grid-cols-4 gap-7">

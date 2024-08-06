@@ -1,3 +1,23 @@
 .App {
   text-align: center;
 }
+/* for login page */
+.form-box{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.form-box form{
+  background-color: #eff4f7;
+}
+/* for monsoon fest component */
+.UnderLine::after{
+  content: "";
+  position: absolute;
+  right: 0%;
+  height: 2px;
+  width: 25px;
+  display: block;
+  background-color: red;
+}

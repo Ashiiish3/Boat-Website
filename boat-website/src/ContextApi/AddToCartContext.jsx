@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const AddToCartContext = createContext();
 
@@ -33,7 +33,8 @@ export const getDataContext = createContext();
 
 export function GetDataContextProdiver({ children }) {
   const [addCartData, setAddCartData] = useState([]);
-  const [addCartLength, setAddCartLength] = useState(1)
+  const [addCartLength, setAddCartLength] = useState(0)
+  const [showLogin, setShowLogin] = useState(false)
   const GetAddCartData = async () => {
     try {
       const response = await axios.get("http://localhost:3000/Add-to-cart");
@@ -43,5 +44,5 @@ export function GetDataContextProdiver({ children }) {
       console.log(error);
     }
   };
-  return <getDataContext.Provider value={{GetAddCartData, addCartData, setAddCartData, addCartLength, setAddCartLength}}>{children}</getDataContext.Provider>;
+  return <getDataContext.Provider value={{GetAddCartData, addCartData, setAddCartData, addCartLength, setAddCartLength, showLogin, setShowLogin}}>{children}</getDataContext.Provider>;
 }

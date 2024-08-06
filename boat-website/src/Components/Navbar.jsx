@@ -1,22 +1,24 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import boatLogo from "../Assets/Images/Boat-logo.png";
 import { NavLink } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
 import { getDataContext } from "../ContextApi/AddToCartContext";
+import Login from "../Pages/Login";
 
 export default function Navbar() {
-  const {GetAddCartData, addCartLength} = useContext(getDataContext)
-  useEffect(()=>{
+  const { GetAddCartData, addCartLength } = useContext(getDataContext)
+  const { showLogin, setShowLogin } = useContext(getDataContext)
+  useEffect(() => {
     GetAddCartData()
-  },[addCartLength])
+  }, [addCartLength])
   return (
     <nav className="border-b-[1px] border-gray-300">
       <div className="w-[94rem] h-[82px] m-auto flex justify-between items-center">
         <div className="flex justify-between items-center">
           <div className="me-24">
-            <img src={boatLogo} alt="" height={80} width={80} />
+            <NavLink to={"/"}><img src={boatLogo} alt="" height={80} width={80} /></NavLink>
           </div>
           <div className="flex justify-between items-center gap-6">
             <NavLink className="hover:font-medium transition-all">Categories</NavLink>
@@ -36,7 +38,7 @@ export default function Navbar() {
             />
           </div>
           <div className="flex gap-3">
-            <NavLink to={"/Login"}>
+            <NavLink onClick={() => setShowLogin(true)}>
               <IoPersonOutline className="text-xl" />
             </NavLink>
             <NavLink to={"/AddToCart"} className="relative" >
@@ -46,6 +48,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      {showLogin ? <Login /> : ""}
     </nav>
   );
 }
