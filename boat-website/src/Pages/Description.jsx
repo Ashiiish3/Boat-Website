@@ -43,14 +43,14 @@ export default function Description() {
             <div className="rounded-xl flex gap-5">
               <div className="h-[450px] gap-2 grid">
                 {currentColor.images && currentColor.images.map((el, ind)=>(
-                  <div key={ind} className="h-[80px] w-[80px] border-[1px] rounded-md p-1">
+                  <div key={ind} className="h-[80px] w-[80px] border-[1px] rounded-md p-[2px]">
                     <img src={el} alt="" className="h-full w-full object-cover rounded-md cursor-pointer" onMouseEnter={()=>getIndex(ind)}/>
                   </div>
                 ))}
               </div>
               <img src={currentColor.images && currentColor.images[index]} alt="" className="m-auto rounded-xl w-[90%] h-[600px] object-cover border-[1px] bg-[#E1E1E1]" />
             </div>
-            <div className="text-start bg-red-400">
+            <div className="text-start">
               <p className="flex items-center gap-1">
                 <span>
                   <IoStar className="text-yellow-500" />
@@ -79,7 +79,7 @@ export default function Description() {
               <div className="mt-5">
                 <h1 className="mb-2"><span className="font-medium">Choose your colour :</span><span> {currentColor.colorName}</span></h1>
                 {descriptionData.image_url && descriptionData.image_url.map((el, index) => (
-                  <button key={index} className={`text-white h-[30px] w-[30px] rounded-full me-2`} style={{ backgroundColor: el.color }} onClick={() => HandleColorChange(el)}></button>
+                  <button key={index} className="text-white h-[30px] w-[30px] rounded-full me-2 border-[1px]" style={{ backgroundColor: el.color }} onClick={() => HandleColorChange(el)}></button>
                 ))}
               </div>
               <button onClick={() => postData(productsId, descriptionData.id, GetAddCartData)} className="bg-black text-white w-52 py-2 mt-10 font-medium text-[15px] rounded-xl">
