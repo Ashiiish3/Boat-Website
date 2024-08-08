@@ -10,7 +10,7 @@ export default function AddToCart() {
     GetAddCartData()
   },[addCartLength])
   return (
-    <div>
+   <div>
       <div className='w-[94rem] m-auto grid grid-cols-1 sm:grid-cols-3 mt-5 gap-5'>
         {addCartData.map((ele, ind)=>(
           <div
@@ -18,7 +18,7 @@ export default function AddToCart() {
           className="flex rounded-lg border-[1px] p-1 bg-gray-50">
           <div className="w-[190px] h-[190px]">
               <img
-                src={ele.image_url}
+                src={ele.image ?? ele.image_url[0].images[0]}
                 alt=""
                 className="w-full h-full object-cover rounded-lg"
               />

@@ -39,7 +39,7 @@ export default function MonsoonFest() {
               <NavLink to={`/Description/${el.id}`}>
                 <div className="w-[355px] h-[355px]">
                   <img
-                    src={el.image_url}
+                    src={el.image}
                     alt=""
                     className="rounded-tl-xl rounded-tr-xl w-full h-full object-cover"
                   />

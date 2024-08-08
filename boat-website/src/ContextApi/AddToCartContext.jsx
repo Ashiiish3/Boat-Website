@@ -9,9 +9,9 @@ export function AddToCartContextProvider({ children }) {
       const response = await axios.get(
         `http://localhost:3000/SliderData/${productId}`
       );
-      let filterData = response.data.products.filter((ele) => ele.id === id);
+      let filterData = response.data.products.find((ele) => ele.id === id);
       axios
-        .post(`http://localhost:3000/Add-to-cart`, filterData[0])
+        .post(`http://localhost:3000/Add-to-cart`, filterData)
         .then((res) => {
             alert("Product has been Added.")
             GetAddCartData()
