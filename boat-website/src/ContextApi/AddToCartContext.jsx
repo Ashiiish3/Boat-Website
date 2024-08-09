@@ -4,6 +4,7 @@ import { createContext, useState } from "react";
 export const AddToCartContext = createContext();
 
 export function AddToCartContextProvider({ children }) {
+  const [input, setInput] = useState("")
   const postData = async (productId, id, GetAddCartData) => {
     try {
       const response = await axios.get(
@@ -21,8 +22,12 @@ export function AddToCartContextProvider({ children }) {
       console.log(error);
     }
   };
+  const ChangeInputHandle = (value)=>{
+    setInput(value)
+    console.log(value)
+  }
   return (
-    <AddToCartContext.Provider value={{ postData }}>
+    <AddToCartContext.Provider value={{ postData, input, setInput, ChangeInputHandle}}>
       {children}
     </AddToCartContext.Provider>
   );

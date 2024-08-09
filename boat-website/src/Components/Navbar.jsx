@@ -4,17 +4,18 @@ import { NavLink } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
-import { getDataContext } from "../ContextApi/AddToCartContext";
+import { AddToCartContext, getDataContext } from "../ContextApi/AddToCartContext";
 import Login from "../Pages/Login";
 
 export default function Navbar() {
   const { GetAddCartData, addCartLength } = useContext(getDataContext)
   const { showLogin, setShowLogin } = useContext(getDataContext)
+  const {input, setInput, ChangeInputHandle} = useContext(AddToCartContext)
   useEffect(() => {
     GetAddCartData()
   }, [addCartLength])
   return (
-    <nav className="border-b-[1px] border-gray-300">
+    <nav className="border-b-[1px] border-gray-300 sticky bg-white top-0 w-full z-10">
       <div className="w-[94rem] h-[82px] m-auto flex justify-between items-center">
         <div className="flex justify-between items-center">
           <div className="me-24">
@@ -35,6 +36,7 @@ export default function Navbar() {
               type="Search"
               placeholder="Search Speakers"
               className="bg-gray-100 rounded-3xl py-2 ps-8 pe-3 w-72"
+              onChange={(e)=>ChangeInputHandle(e.target.value)}
             />
           </div>
           <div className="flex gap-3">
@@ -48,7 +50,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      {showLogin ? <Login /> : ""}
+      {showLogin && <Login />}
     </nav>
   );
 }
