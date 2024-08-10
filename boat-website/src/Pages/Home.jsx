@@ -13,6 +13,7 @@ import "swiper/css/autoplay";
 import "swiper/css/pagination";
 import Banner from "../Components/Banner";
 import Lifestyles from "../Components/Lifestyles";
+import BoatNavTabs from "../Components/BoatNavTabs";
 
 export default function Home() {
   const setting = {
@@ -46,6 +47,7 @@ export default function Home() {
       </div>
       <Banner />
       <Lifestyles />
+      <BoatNavTabs />
     </div>
   );
 }

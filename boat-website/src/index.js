@@ -4,17 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-import { AddToCartContextProvider, GetDataContextProdiver } from './ContextApi/AddToCartContext';
+import { AddToCartContextProvider, GetDataContextProvider } from './ContextApi/AddToCartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <GetDataContextProdiver>
+  <GetDataContextProvider>
   <AddToCartContextProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>
   </AddToCartContextProvider>
-  </GetDataContextProdiver>
+  </GetDataContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

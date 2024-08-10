@@ -36,7 +36,7 @@ export function AddToCartContextProvider({ children }) {
 // get Data from add to cart
 export const getDataContext = createContext();
 
-export function GetDataContextProdiver({ children }) {
+export function GetDataContextProvider({ children }) {
   const [addCartData, setAddCartData] = useState([]);
   const [addCartLength, setAddCartLength] = useState(0)
   const [showLogin, setShowLogin] = useState(false)

@@ -21,3 +21,21 @@
   display: block;
   background-color: red;
 }
+/* for BoatNavTabs components */
+.tabs{
+  cursor: pointer;
+}
+.Active-Tab{
+  background-color: #E7ECEE;
+  color: black;
+  padding: 5px 20px;
+  border-radius: 25px;
+  border: 1px solid black;
+  font-weight: 600;
+}
+.content{
+  display: none;
+}
+.active-content {
+  display: grid;
+}

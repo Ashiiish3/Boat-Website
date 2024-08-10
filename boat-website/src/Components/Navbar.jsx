@@ -10,7 +10,7 @@ import Login from "../Pages/Login";
 export default function Navbar() {
   const { GetAddCartData, addCartLength } = useContext(getDataContext)
   const { showLogin, setShowLogin } = useContext(getDataContext)
-  const {input, setInput, ChangeInputHandle} = useContext(AddToCartContext)
+  const {ChangeInputHandle} = useContext(AddToCartContext)
   useEffect(() => {
     GetAddCartData()
   }, [addCartLength])
