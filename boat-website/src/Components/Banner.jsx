@@ -19,46 +19,46 @@ export default function Banner() {
   }, []);
   return (
     <div>
-      <div className="w-[94rem] py-6 m-auto">
-        <div className="w-[60%] m-auto grid grid-cols-1 lg:grid-cols-4">
-          <div>
-            <img src={Icons.icon1} alt="" className="m-auto w-28" />
-            <p className="text-lg">
+      <div className="lg:w-[94rem] py-6 m-auto">
+        <div className="w-[95%] lg:w-[60%] m-auto grid grid-cols-4">
+          <div className="m-auto">
+            <img src={Icons.icon1} alt="" className="w-28" />
+            <p className="text-[12px] lg:text-lg">
               <span className="font-bold">1 year </span>Warranty
             </p>
           </div>
-          <div>
-            <img src={Icons.icon2} alt="" className="m-auto w-28" />
-            <p className="text-lg">
+          <div className="m-auto">
+            <img src={Icons.icon2} alt="" className="w-28" />
+            <p className="text-[12px] lg:text-lg">
               <span className="font-bold">7-day </span>Replacement
             </p>
           </div>
-          <div>
-            <img src={Icons.icon3} alt="" className="m-auto w-28" />
-            <p className="text-lg">
+          <div className="m-auto">
+            <img src={Icons.icon3} alt="" className="w-28" />
+            <p className="text-[12px] lg:text-lg">
               <span className="font-bold">Free Express </span>Delivery
             </p>
           </div>
           <div>
             <img src={Icons.icon4} alt="" className="m-auto w-28" />
-            <p className="text-lg">
+            <p className="text-[12px] lg:text-lg">
               <span className="font-bold">GST </span>Billing
             </p>
           </div>
         </div>
       </div>
       <MonsoonFest />
-      <div className="w-[94rem] m-auto my-10">
+      <div className="w-full lg:w-[94rem] mx-auto my-10 px-3 lg:px-0">
         <h1 className="text-start text-2xl font-medium mb-5 tracking-wide">
-            Explore <span className="UnderLine relative font-extrabold">Bestsellers</span>
+          Explore{" "}
+          <span className="UnderLine relative font-extrabold">Bestsellers</span>
         </h1>
-        <div className="w-[94rem] grid grid-cols-5 gap-3 m-auto mt-4">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mt-4">
           {sliderData.map((ele, index) => (
             <div key={index}>
               <NavLink to={`/Collection/${ele.id}`}>
                 <video
-                  className="rounded-2xl object-cover hover:cursor-pointer"
-                  width="300"
+                  className="rounded-2xl object-cover w-full h-auto hover:cursor-pointer"
                   onMouseEnter={(e) => e.target.play()}
                   onMouseLeave={(e) => e.target.pause()}
                   muted
@@ -66,7 +66,7 @@ export default function Banner() {
                   <source src={ele.videoLink} type="video/mp4" />
                 </video>
               </NavLink>
-              <h4 className="font-medium mt-1">{ele.title}</h4>
+              <h4 className="font-medium mt-1 text-center">{ele.title}</h4>
             </div>
           ))}
         </div>

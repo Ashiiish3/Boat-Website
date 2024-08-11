@@ -17,11 +17,11 @@ export default function Navbar() {
   return (
     <nav className="border-b-[1px] border-gray-300 sticky bg-white top-0 w-full z-10">
       <div className="w-[94rem] h-[82px] m-auto flex justify-between items-center">
-        <div className="flex justify-between items-center">
-          <div className="me-24">
+        <div className="flex justify-between items-center gap-24">
+          <div className="order-1 lg:order-none">
             <NavLink to={"/"}><img src={boatLogo} alt="" height={80} width={80} /></NavLink>
           </div>
-          <div className="flex justify-between items-center gap-6">
+          <div className="navbar flex justify-between items-center gap-6">
             <NavLink className="hover:font-medium transition-all">Categories</NavLink>
             <NavLink className="hover:font-medium transition-all">boAt Personalisation</NavLink>
             <NavLink className="hover:font-medium transition-all">Gift with boAt</NavLink>

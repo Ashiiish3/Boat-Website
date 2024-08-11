@@ -1,5 +1,6 @@
 import AllRoutes from './AllRoutes/AllRoutes';
 import './App.css';
+import './MediaQuery/mediaquery.css'
 import Navbar from './Components/Navbar';
 
 function App() {
