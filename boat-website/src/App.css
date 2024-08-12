@@ -2,7 +2,9 @@
   text-align: center;
 }
 /* for Navbar components */
-
+.menu-button{
+  display: none;
+}
 /* for login page */
 .form-box{
   position: fixed;

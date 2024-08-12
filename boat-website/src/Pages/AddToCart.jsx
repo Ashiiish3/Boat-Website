@@ -8,7 +8,7 @@ export default function AddToCart() {
     GetAddCartData();
   }, [addCartLength]);
   return (
-    <div className="w-[94rem] m-auto grid lg:grid-flow-col gap-5">
+    <div className="w-full max-w-[94rem] m-auto grid lg:grid-flow-col gap-5 px-4 sm:px-6 md:px-0">
       <div className="grid grid-cols-1 sm:grid-cols-3 mt-5 gap-5">
         {addCartData.map((ele, ind) => (
           <SingleCart key={ind} ele={ele} />

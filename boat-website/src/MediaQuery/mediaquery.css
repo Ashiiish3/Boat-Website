@@ -1,5 +1,6 @@
 @media (min-width: 320px) and (max-width: 480px) {
-    .navbar{
-        display: none;
+    .menu-button{
+        display: block;
+        font-size: 26px;
     }
 }
