@@ -27,22 +27,25 @@ export default function Collection() {
     getData();
   }, []);
   return (
-    <div className="text-start">
-      <div className="w-[94rem] m-auto py-3">
+    <div className="text-start px-4">
+      <div className="w-full lg:w-[94rem] m-auto py-3">
         <h6 className="flex items-center text-[11px] text-gray-400"><NavLink to={"/"}>Home</NavLink> <IoIosArrowForward /> {title}</h6>
         <h1 className="font-medium text-2xl mt-4 mb-8">{title}</h1>
-        <div className="flex justify-between">
-          <div className="border-[1px] bg-gray-100 p-2 rounded-lg">
-            <select className="bg-transparent">
-                <option value="">Filter By</option>
-                <option value="">Alphabetically A-Z</option>
-                <option value="">Alphabetically Z-A</option>
-                <option value="">Price, low to high</option>
-                <option value="">Price, high to low</option>
-              </select>
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="border-[1px] bg-gray-100 p-2 rounded-lg w-full lg:w-48">
+            <label className="sr-only" htmlFor="filter">Filter By</label>
+            <select id="filter" className="w-full bg-transparent">
+              <option value="">Filter By</option>
+              <option value="">Alphabetically A-Z</option>
+              <option value="">Alphabetically Z-A</option>
+              <option value="">Price, low to high</option>
+              <option value="">Price, high to low</option>
+            </select>
           </div>
-          <div className="border-[1px] bg-gray-100 p-2 rounded-lg"><span className="font-medium">Sort by :</span> <select className="bg-transparent">
-              <option value="">Features</option>
+          <div className="border-[1px] bg-gray-100 p-2 rounded-lg w-full lg:w-48">
+            <label className="sr-only" htmlFor="sort">Sort by</label>
+            <select id="sort" className="w-full bg-transparent">
+              <option value="">Sort by Features</option>
               <option value="">Alphabetically A-Z</option>
               <option value="">Alphabetically Z-A</option>
               <option value="">Price, low to high</option>
@@ -50,11 +53,11 @@ export default function Collection() {
             </select>
           </div>
         </div>
-        <div className="grid lg:grid-cols-3 mt-5 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 mt-5 gap-5 w-[100%]">
           {productData.map((ele, ind) => (
             <div
               key={ind}
-              className="flex rounded-lg border-[1px] p-1 bg-gray-50"
+              className="flex rounded-lg border-[1px] p-1 pb-2 bg-gray-50 w-[100%]"
             >
               <div className="w-[190px] h-[190px]">
                 <NavLink to={`/Description/${ele.id}`}>

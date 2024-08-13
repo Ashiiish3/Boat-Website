@@ -14,7 +14,7 @@ export default function AddToCart() {
           <SingleCart key={ind} ele={ele} />
         ))}
       </div>
-      <div className="w-[300px] h-[195px] mt-5 rounded-lg border-[1px] py-3 bg-gray-50">
+      <div className="w-[300px] h-[195px] mt-5 rounded-lg border-[1px] py-3 bg-gray-50 m-auto">
         <h1 className="text-start px-4 text-gray-500 font-medium uppercase pb-3">
           Price Details
         </h1>
