@@ -11,7 +11,7 @@ export default function MonsoonFest() {
   const {GetAddCartData} = useContext(getDataContext)
   const getData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/SliderData/wireless-earbuds`);
+      const response = await axios.get(`https://boat-website-json-server.onrender.com/SliderData/wireless-earbuds`);
       let filterData = response.data.products.filter((ele, ind) => {
         if (ind < 4) {
           return ele;

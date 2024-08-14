@@ -19,7 +19,7 @@ export default function Description() {
   const getData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/SliderData/${productsId}`
+        `https://boat-website-json-server.onrender.com/SliderData/${productsId}`
       );
       let filterData = response.data.products.find((ele) => ele.id === id);
       setDescriptionData(filterData);

@@ -14,7 +14,7 @@ export default function Collection() {
   const {GetAddCartData} = useContext(getDataContext)
   const getData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/SliderData/${id}`
+      const response = await axios.get(`https://boat-website-json-server.onrender.com/SliderData/${id}`
       );
       setTitle(response.data.title)
       setProductData(response.data.products);

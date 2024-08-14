@@ -8,15 +8,8 @@ export default function Banner() {
   const [sliderData, setSliderData] = useState([]);
   const getSliderData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/SliderData",{
-        params:{
-          _limit: 2,
-          _page: 2,
-          q:"Smartwatches"
-        }
-      });
+      const response = await axios.get("https://boat-website-json-server.onrender.com/SliderData");
       setSliderData(response.data);
-      console.log(response.data)
     } catch (error) {
       console.log(error);
     }

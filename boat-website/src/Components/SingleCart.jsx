@@ -10,7 +10,7 @@ export default function SingleCart({ ele }) {
   const { GetAddCartData } = useContext(getDataContext);
   const DeleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/Add-to-cart/${id}`);
+      await axios.delete(`https://boat-website-json-server.onrender.com/Add-to-cart/${id}`);
       alert("Product has been deleted.");
       GetAddCartData();
     } catch (error) {

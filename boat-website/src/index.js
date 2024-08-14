@@ -8,13 +8,13 @@ import { AddToCartContextProvider, GetDataContextProvider } from './ContextApi/A
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <BrowserRouter>
   <GetDataContextProvider>
   <AddToCartContextProvider>
-  <BrowserRouter>
     <App />
-  </BrowserRouter>
   </AddToCartContextProvider>
   </GetDataContextProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

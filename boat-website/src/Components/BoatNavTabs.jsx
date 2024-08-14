@@ -17,7 +17,7 @@ export default function BoatNavTabs() {
   }
   const getData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/SliderData/${getId}`);
+      const response = await axios.get(`https://boat-website-json-server.onrender.com/SliderData/${getId}`);
       let filterData = response.data.products.filter((ele, ind) => {
         if (ind > 4 && ind < 9) {
           return ele;
