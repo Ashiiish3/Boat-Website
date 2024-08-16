@@ -1,13 +1,19 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import SearchProducts from "../Pages/SearchProducts";
+import Home from "../Pages/Home";
 
 export const AddToCartContext = createContext();
 
 export function AddToCartContextProvider({ children }) {
   const [search, setSearch] = useState("");
-  const [results, setResults] = useState([]);
+  const [searchProductId, setSearchProductId] = useState("");
+  const [filterData, setFilterData] = useState([]);
+  const query = new URLSearchParams(useLocation().search).get("q");
+  const navigate = useNavigate();
   const postData = async (productId, id, GetAddCartData) => {
+    console.log(productId)
     try {
       const response = await axios.get(
         `https://boat-website-json-server.onrender.com/SliderData/${productId}`
@@ -27,32 +33,50 @@ export function AddToCartContextProvider({ children }) {
       console.log(error);
     }
   };
+  // data get for search button
   const getSliderData = async () => {
     try {
       const response = await axios.get(
-        "https://boat-website-json-server.onrender.com/SliderData"
+        `https://boat-website-json-server.onrender.com/SliderData`,
+        {
+          params: {
+            q: search,
+          },
+        }
       );
-      setResults(response.data);
+      response.data.map((ele) =>{
+        setSearchProductId(ele.id)
+        setFilterData(ele.products)
+      });
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    // Filter the results based on the query
-    setTimeout(() => {
-      getSliderData();
-      const filtered = results
-        .filter((item) => item.title.toLowerCase().includes(search))
-        .map((ele) => console.log(ele.products));
-      console.log(filtered);
-    }, 2000);
+    const unlisten = window.addEventListener("popstate", () => {
+      setSearch("");
+    });
+    return () => {
+      window.removeEventListener("popstate", unlisten);
+    };
+  }, []);
+  useEffect(() => {
+    if (search !== "") {
+      let timeOut = setTimeout(() => {
+        getSliderData();
+        navigate(`/SearchProducts?q=${search}`);
+      }, 1000);
+      return () => {
+        clearTimeout(timeOut);
+      };
+    } else {
+      navigate(`/`);
+    }
   }, [search]);
-  const ChangeInputHandle = (event) => {
-    setSearch(event.target.value);
-  };
   return (
     <AddToCartContext.Provider
-      value={{ postData, search, setSearch, ChangeInputHandle }}
+      value={{ postData, search, setSearch, filterData, query, setFilterData, searchProductId, setSearchProductId }}
     >
       {children}
     </AddToCartContext.Provider>

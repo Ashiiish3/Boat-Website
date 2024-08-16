@@ -13,8 +13,8 @@ export default function Description() {
   const [descriptionData, setDescriptionData] = useState([]);
   const [index, setIndex] = useState(0);
   const [currentColor, setCurrentColor] = useState([]);
+  const { postData, searchProductId } = useContext(AddToCartContext);
   let productsId = localStorage.getItem("collection");
-  const { postData } = useContext(AddToCartContext);
   const { GetAddCartData } = useContext(getDataContext);
   const getData = async () => {
     try {

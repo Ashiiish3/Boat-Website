@@ -13,7 +13,10 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { GetAddCartData, addCartLength } = useContext(getDataContext)
   const { showLogin, setShowLogin } = useContext(getDataContext)
-  const {ChangeInputHandle, search} = useContext(AddToCartContext)
+  const {setSearch, search} = useContext(AddToCartContext)
+  const ChangeInputHandle = (event) => {
+    setSearch(event.target.value);
+  };
   const NavbarHandle = () => {
     setMenuOpen(!menuOpen)
     if(menuOpen){
@@ -48,7 +51,6 @@ export default function Navbar() {
           <div className="flex justify-between items-center gap-2 lg:gap-5">
             <div className="flex justify-between items-center relative">
               <IoSearchOutline className="absolute left-2 text-md lg:text-xl" />
-              <NavLink to={search === "" ? "" : "/SearchProducts"} >
                 <input
                   type="Search"
                   placeholder="Search Speakers"
@@ -56,13 +58,12 @@ export default function Navbar() {
                   value={search}
                   onChange={ChangeInputHandle}
                 />
-              </NavLink>
             </div>
             <div className="flex gap-2 lg:gap-3">
               <NavLink onClick={() => setShowLogin(true)}>
                 <IoPersonOutline className="text-xl" />
               </NavLink>
-              <NavLink to={"/AddToCart"} className="relative" >
+              <NavLink to={"/AddToCart"} className="relative">
                 <HiOutlineShoppingBag className="text-xl" />
                 <div className="absolute inline-flex items-center justify-center w-4 h-4 text-[10px] font-bold text-white bg-red-500 rounded-full -top-2 -end-2 p-2">{addCartLength}</div>
               </NavLink>

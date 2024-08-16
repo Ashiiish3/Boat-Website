@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ImageSlider } from "../Constant/AllData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
@@ -27,27 +27,29 @@ export default function Home() {
     },
   };
   return (
-    <div>
+    <>
       <div>
-        <Swiper {...setting}>
-          {ImageSlider.map((img, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <div className="h-full w-full">
-                  <img
-                    src={img.image}
-                    alt="image"
-                    className="h-[91vh] w-full object-cover"
-                  />
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+        <div>
+          <Swiper {...setting}>
+            {ImageSlider.map((img, index) => {
+              return (
+                <SwiperSlide key={index}>
+                  <div className="h-full w-full">
+                    <img
+                      src={img.image}
+                      alt="image"
+                      className="h-[91vh] w-full object-cover"
+                    />
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+        <Banner />
+        <Lifestyles />
+        <BoatNavTabs />
       </div>
-      <Banner />
-      <Lifestyles />
-      <BoatNavTabs />
-    </div>
+    </>
   );
 }
