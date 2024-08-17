@@ -1,7 +1,7 @@
 .App {
   text-align: center;
 }
-/* for Navbar components */
+/* for Navbar component */
 .menu-button{
   display: none;
 }
@@ -25,7 +25,7 @@
   display: block;
   background-color: red;
 }
-/* for BoatNavTabs components */
+/* for BoatNavTabs component */
 .tabs{
   cursor: pointer;
 }
@@ -43,9 +43,16 @@
 .active-content {
   display: grid;
 }
-/* for description components */
+/* for description component */
 .offer-value{
   transform: translate(-50%, -50%);
   left: 50%;
   top: 100%;
+}
+/* for search Error component */
+.search-error-box{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 }

@@ -11,6 +11,7 @@ export function AddToCartContextProvider({ children }) {
   const [searchProductId, setSearchProductId] = useState("");
   const [filterData, setFilterData] = useState([]);
   const query = new URLSearchParams(useLocation().search).get("q");
+  const location = useLocation()
   const navigate = useNavigate();
   const postData = async (productId, id, GetAddCartData) => {
     console.log(productId)
@@ -33,7 +34,7 @@ export function AddToCartContextProvider({ children }) {
       console.log(error);
     }
   };
-  // data get for search button
+  // get data for search button
   const getSliderData = async () => {
     try {
       const response = await axios.get(
@@ -48,24 +49,21 @@ export function AddToCartContextProvider({ children }) {
         setSearchProductId(ele.id)
         setFilterData(ele.products)
       });
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    const unlisten = window.addEventListener("popstate", () => {
-      setSearch("");
-    });
-    return () => {
-      window.removeEventListener("popstate", unlisten);
-    };
-  }, []);
+      if(location.pathname === '/'){
+        setSearch("");
+      }
+  }, [location.pathname]);
   useEffect(() => {
     if (search !== "") {
       let timeOut = setTimeout(() => {
         getSliderData();
         navigate(`/SearchProducts?q=${search}`);
+        setFilterData([])
       }, 1000);
       return () => {
         clearTimeout(timeOut);
