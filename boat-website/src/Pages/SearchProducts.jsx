@@ -1,16 +1,17 @@
 import React, { useContext } from 'react'
-import { IoIosArrowForward } from 'react-icons/io'
 import { IoStar } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
 import { AddToCartContext, getDataContext } from '../ContextApi/AddToCartContext'
 import SearchError from '../Components/SearchError'
 
 export default function SearchProducts() {
-  const {filterData, setFilterData} = useContext(AddToCartContext)
-  const {postData, query, searchProductId, setSearchProductId} = useContext(AddToCartContext)
+  const {filterData} = useContext(AddToCartContext)
+  const {postData, query, searchProductId, setSortOrder} = useContext(AddToCartContext)
   const {GetAddCartData} = useContext(getDataContext)
   localStorage.setItem("collection", searchProductId)
-  console.log(filterData)
+  const HandleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  }
   return filterData == "" ? <SearchError /> : (
     <>
       <div className="text-start px-4">
@@ -29,12 +30,12 @@ export default function SearchProducts() {
             </div>
             <div className="border-[1px] bg-gray-100 p-2 rounded-lg w-full lg:w-48">
               <label className="sr-only" htmlFor="sort">Sort by</label>
-              <select id="sort" className="w-full bg-transparent">
+              <select id="sort" className="w-full bg-transparent" onChange={HandleSortChange}>
                 <option value="">Sort by Features</option>
-                <option value="">Alphabetically A-Z</option>
-                <option value="">Alphabetically Z-A</option>
-                <option value="">Price, low to high</option>
-                <option value="">Price, high to low</option>
+                <option value="AtoZ">Alphabetically A-Z</option>
+                <option value="ZtoA">Alphabetically Z-A</option>
+                <option value="asc">Price, low to high</option>
+                <option value="desc">Price, high to low</option>
               </select>
             </div>
           </div>

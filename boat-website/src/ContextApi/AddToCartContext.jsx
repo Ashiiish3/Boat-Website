@@ -1,8 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import SearchProducts from "../Pages/SearchProducts";
-import Home from "../Pages/Home";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const AddToCartContext = createContext();
 
@@ -10,6 +8,7 @@ export function AddToCartContextProvider({ children }) {
   const [search, setSearch] = useState("");
   const [searchProductId, setSearchProductId] = useState("");
   const [filterData, setFilterData] = useState([]);
+  const [sortOrder, setSortOrder] = useState('');
   const query = new URLSearchParams(useLocation().search).get("q");
   const location = useLocation()
   const navigate = useNavigate();
@@ -47,7 +46,20 @@ export function AddToCartContextProvider({ children }) {
       );
       response.data.map((ele) =>{
         setSearchProductId(ele.id)
-        setFilterData(ele.products)
+        if(sortOrder === ''){
+          setFilterData(ele.products)
+        }
+        let sortedProducts = [...ele.products];
+        if (sortOrder === "asc") {
+          sortedProducts.sort((a, b) => a.new_price.replace(/,/g, '') - b.new_price.replace(/,/g, ''));
+        } else if (sortOrder === "desc") {
+          sortedProducts.sort((a, b) => b.new_price.replace(/,/g, '') - a.new_price.replace(/,/g, ''));
+        } else if (sortOrder === "AtoZ") {
+          sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortOrder === "ZtoA") {
+          sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+        }
+        setFilterData(sortedProducts)
       });
     } catch (error) {
       console.log(error);
@@ -72,9 +84,12 @@ export function AddToCartContextProvider({ children }) {
       navigate(`/`);
     }
   }, [search]);
+  useEffect(()=>{
+    getSliderData();
+  },[sortOrder])
   return (
     <AddToCartContext.Provider
-      value={{ postData, search, setSearch, filterData, query, setFilterData, searchProductId, setSearchProductId }}
+      value={{ postData, search, setSearch, filterData, query, setFilterData, searchProductId, setSearchProductId, sortOrder, setSortOrder }}
     >
       {children}
     </AddToCartContext.Provider>

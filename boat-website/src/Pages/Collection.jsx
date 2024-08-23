@@ -12,20 +12,37 @@ export default function Collection() {
   const [title, setTitle] = useState("")
   const {postData} = useContext(AddToCartContext)
   const {GetAddCartData} = useContext(getDataContext)
+  const [sortOrder, setSortOrder] = useState('');
+  useEffect(() => {
+    getData();
+  }, [sortOrder]);
   const getData = async () => {
     try {
       const response = await axios.get(`https://boat-website-json-server.onrender.com/SliderData/${id}`
       );
       setTitle(response.data.title)
-      setProductData(response.data.products);
+      if(sortOrder === ''){
+        setProductData(response.data.products);
+      }
       GetAddCartData()
+      let sortedProducts = [...response.data.products];
+      if (sortOrder === "asc") {
+        sortedProducts.sort((a, b) => a.new_price.replace(/,/g, '') - b.new_price.replace(/,/g, ''));
+      } else if (sortOrder === "desc") {
+        sortedProducts.sort((a, b) => b.new_price.replace(/,/g, '') - a.new_price.replace(/,/g, ''));
+      } else if (sortOrder === "AtoZ") {
+        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (sortOrder === "ZtoA") {
+        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+      }
+      setProductData(sortedProducts)
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    getData();
-  }, []);
+  const HandleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  }
   return (
     <div className="text-start px-4">
       <div className="w-full lg:w-[94rem] m-auto py-3">
@@ -44,12 +61,12 @@ export default function Collection() {
           </div>
           <div className="border-[1px] bg-gray-100 p-2 rounded-lg w-full lg:w-48">
             <label className="sr-only" htmlFor="sort">Sort by</label>
-            <select id="sort" className="w-full bg-transparent">
+            <select id="sort" className="w-full bg-transparent" onChange={HandleSortChange}>
               <option value="">Sort by Features</option>
-              <option value="">Alphabetically A-Z</option>
-              <option value="">Alphabetically Z-A</option>
-              <option value="">Price, low to high</option>
-              <option value="">Price, high to low</option>
+              <option value="AtoZ">Alphabetically A-Z</option>
+              <option value="ZtoA">Alphabetically Z-A</option>
+              <option value="asc">Price, low to high</option>
+              <option value="desc">Price, high to low</option>
             </select>
           </div>
         </div>
