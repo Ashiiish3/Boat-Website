@@ -6,6 +6,7 @@ import Description from "../Pages/Description";
 import AddToCart from "../Pages/AddToCart";
 import PrivatePage from "../Pages/PrivatePage";
 import SearchProducts from "../Pages/SearchProducts";
+import EarbudsAnimation from "../Components/EarbudsAnimation";
 
 export default function AllRoutes() {
   return (
@@ -21,8 +22,8 @@ export default function AllRoutes() {
         }
       ></Route>
       <Route path="/Description/:id" element={<Description />}></Route>
+      <Route path="/Earbudsanimation" element={<EarbudsAnimation />}></Route>
       <Route path="/AddToCart" element={<AddToCart />}></Route>
-
       <Route path="*" element={<h1>Page is not Found</h1>}></Route>
     </Routes>
   );
