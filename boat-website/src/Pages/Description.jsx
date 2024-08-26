@@ -7,6 +7,7 @@ import {
   AddToCartContext,
   getDataContext,
 } from "../ContextApi/AddToCartContext";
+import EarbudsAnimation from "../Components/EarbudsAnimation";
 
 export default function Description() {
   const { id } = useParams();
@@ -39,7 +40,7 @@ export default function Description() {
   };
   return (
     <div>
-      <div className="w-full max-w-[94rem] m-auto py-3 px-4">
+      <div className="w-full max-w-[94rem] m-auto py-3 px-4 mb-16">
         <h6 className="flex items-center text-[11px] sm:text-xs text-gray-400">
           <NavLink to={"/"}>Home</NavLink> <IoIosArrowForward /> Description
         </h6>
@@ -189,6 +190,7 @@ export default function Description() {
           </div>
         </div>
       </div>
+      <EarbudsAnimation />
     </div>
   );
 }

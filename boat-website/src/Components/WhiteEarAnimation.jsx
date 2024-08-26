@@ -1,17 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react'
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ImagesArray } from "../Constant/AllData";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {whiteImageObj} from '../Constant/AllData'
 
-export default function EarbudsAnimation() {
-  gsap.registerPlugin(ScrollTrigger);
+export default function WhiteEarAnimation() {
+    gsap.registerPlugin(ScrollTrigger);
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
-  const frameCount = 160;
+  const frameCount = 277;
   const images = [];
   const airpods = { frame: 0 };
   const currentFrame = (index) => (
-    ImagesArray[`blackEarbudsImage_${index.toString().padStart(4, '0')}`]
+    whiteImageObj[`whiteEarbudsImage_${index.toString().padStart(4, '0')}`]
   );
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -37,7 +37,7 @@ export default function EarbudsAnimation() {
         scroller: 'body',
         markers: "",
         start:"top 10%",
-        end: "top -150%",
+        end: "top -400%",
         scrub: 0.5,
         pin: true
       },
@@ -71,7 +71,7 @@ export default function EarbudsAnimation() {
     };
   }, [frameCount]);
   return (
-    <div className="w-full h-[250vh] bg-black">
+    <div className="w-full h-[500vh] bg-[#EDEDED]">
       <canvas
         className="w-full h-[90vh] sticky top-0 object-contain m-auto"
         ref={canvasRef}
@@ -79,5 +79,5 @@ export default function EarbudsAnimation() {
       >
       </canvas>
     </div>
-  );
+  )
 }

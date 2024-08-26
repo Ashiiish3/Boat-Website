@@ -41,7 +41,7 @@ export default function Navbar() {
             </div>
             {/* Navbar for large screens */}
             <div className="navbar hidden lg:flex lg:items-center gap-6">
-              <NavLink className="hover:font-medium transition-all" to={'/Earbudsanimation'}>Categories</NavLink>
+              <NavLink className="hover:font-medium transition-all" to={'/WhiteEarAnimation'}>Categories</NavLink>
               <NavLink className="hover:font-medium transition-all">boAt Personalisation</NavLink>
               <NavLink className="hover:font-medium transition-all">Gift with boAt</NavLink>
               <NavLink className="hover:font-medium transition-all">Corporate Orders</NavLink>
