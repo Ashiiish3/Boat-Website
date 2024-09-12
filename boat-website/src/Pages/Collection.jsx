@@ -4,6 +4,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoStar } from "react-icons/io5";
 import { AddToCartContext, getDataContext } from "../ContextApi/AddToCartContext";
+import Loader from "../Components/Loader";
 
 export default function Collection() {
   let { id } = useParams();
@@ -13,6 +14,7 @@ export default function Collection() {
   const {postData} = useContext(AddToCartContext)
   const {GetAddCartData} = useContext(getDataContext)
   const [sortOrder, setSortOrder] = useState('');
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     getData();
   }, [sortOrder]);
@@ -20,6 +22,7 @@ export default function Collection() {
     try {
       const response = await axios.get(`https://boat-website-json-server.onrender.com/SliderData/${id}`
       );
+      setLoading(false)
       setTitle(response.data.title)
       if(sortOrder === ''){
         setProductData(response.data.products);
@@ -43,7 +46,7 @@ export default function Collection() {
   const HandleSortChange = (e) => {
     setSortOrder(e.target.value);
   }
-  return (
+  return loading ? <Loader /> : (
     <div className="text-start px-4">
       <div className="w-full lg:w-[94rem] m-auto py-3">
         <h6 className="flex items-center text-[11px] text-gray-400"><NavLink to={"/"}>Home</NavLink> <IoIosArrowForward /> {title}</h6>

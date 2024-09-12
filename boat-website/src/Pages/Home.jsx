@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { ImageSlider } from "../Constant/AllData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
@@ -48,8 +48,8 @@ export default function Home() {
           </Swiper>
         </div>
         <Banner />
-        <Lifestyles />
         <WhiteEarAnimation />
+        <Lifestyles />
         <BoatNavTabs />
       </div>
     </>

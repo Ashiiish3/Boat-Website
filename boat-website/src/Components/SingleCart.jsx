@@ -6,8 +6,8 @@ import { TiMinus } from "react-icons/ti";
 import { FiPlus } from "react-icons/fi";
 
 export default function SingleCart({ ele }) {
-  const [count, setCount] = useState(1);
-  const { GetAddCartData } = useContext(getDataContext);
+  const { GetAddCartData, addCartLength } = useContext(getDataContext);
+  const [loading, setLoading] = useState(false)
   const DeleteProduct = async (id) => {
     try {
       await axios.delete(`https://boat-website-json-server.onrender.com/Add-to-cart/${id}`);
@@ -17,6 +17,31 @@ export default function SingleCart({ ele }) {
       console.log(error);
     }
   };
+  const ButtonLoader = () =>{
+    return <div><span className="buttonLoader"></span></div>
+  }
+  const DecreaseQuantity = (id) => {
+    ele.quantity = ele.quantity - 1
+    setLoading(true)
+    UpdateQuantity(id, ele.quantity )
+  }
+  const IncreaseQuantity = (id) => {
+    ele.quantity = ele.quantity + 1
+    setLoading(true)
+    UpdateQuantity(id, ele.quantity )
+  }
+  const UpdateQuantity = async (id, quantity ) => {
+    try{
+      let response = await axios.patch(
+        `https://boat-website-json-server.onrender.com/Add-to-cart/${id}`, {quantity}
+      )
+      console.log(response.data)
+      setLoading(false)
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
   return (
     <>
       <div className="flex rounded-lg border-[1px] p-1 bg-gray-50">
@@ -42,7 +67,7 @@ export default function SingleCart({ ele }) {
             </p>
             <h3 className="text-sm lg:text-lg font-medium my-1">{ele.name}</h3>
             <h4>
-              <span className="lg:text-lg font-medium">₹{ele.new_price.replace(/,/g, '')*count}</span>{" "}
+              <span className="lg:text-lg font-medium">₹{ele.new_price.replace(/,/g, '')*ele.quantity}</span>{" "}
               <span className="lg:text-sm line-through text-gray-400">
                 ₹{ele.old_price}
               </span>{" "}
@@ -53,18 +78,18 @@ export default function SingleCart({ ele }) {
           </div>
           <div className="my-2 flex justify-between items-center w-full m-auto">
             <button
-              className="bg-black text-white py-2 w-12 lg:w-14 text-[20px] rounded-xl text-center"
-              disabled={count == 1}
-              onClick={() => setCount(count - 1)}
+              className="bg-black text-white py-2 w-12 lg:w-14 text-[20px] rounded-xl text-center disabled:cursor-not-allowed"
+              disabled={ele.quantity == 1}
+              onClick={()=>DecreaseQuantity(ele.id)}
             >
               <TiMinus className="m-auto" />
             </button>
-            <button className="bg-black text-white py-2 w-12 lg:w-14 text-[13px] rounded-xl">
-              {count}
+            <button className="bg-black text-white py-2 w-12 lg:w-14 text-[13px] rounded-xl cursor-default">
+              {loading ? <ButtonLoader /> : ele.quantity}
             </button>
             <button
               className="bg-black text-white py-2 w-12 lg:w-14 text-[20px] rounded-xl"
-              onClick={() => setCount(count + 1)}
+              onClick={()=>IncreaseQuantity(ele.id)}
             >
               <FiPlus className="m-auto" />
             </button>

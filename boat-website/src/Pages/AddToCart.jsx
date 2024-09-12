@@ -1,10 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getDataContext } from "../ContextApi/AddToCartContext";
 import SingleCart from "../Components/SingleCart";
 
 export default function AddToCart() {
   const { GetAddCartData, addCartData, addCartLength } = useContext(getDataContext);
+  const [totalPrice, setTotalPrice] = useState(0)
   useEffect(() => {
+    let total = 0;
+    const TotalAmount = () => {
+      addCartData.forEach((element) => {
+        const oneProductPrice = (element.new_price.replace(/,/g, '')*element.quantity)
+        total = total + oneProductPrice
+        console.log(oneProductPrice)
+        console.log(total)
+        return total
+      });
+      setTotalPrice(total)
+    }
+    TotalAmount()
     GetAddCartData();
   }, [addCartLength]);
   return (
@@ -22,7 +35,7 @@ export default function AddToCart() {
         <div className="px-4">
           <div className="flex justify-between my-3">
             <p>Price ({addCartLength} items)</p>
-            <p>₹</p>
+            <p>₹ {totalPrice}</p>
           </div>
           <div className="flex justify-between">
             <p>Delivery Charges</p>
@@ -31,7 +44,7 @@ export default function AddToCart() {
           <hr />
           <div className="flex justify-between mt-3">
             <p className="font-medium text-lg">Total Amount</p>
-            <p className="font-medium text-lg">₹00</p>
+            <p className="font-medium text-lg">₹ {totalPrice}</p>
           </div>
         </div>
       </div>

@@ -101,6 +101,7 @@ export const getDataContext = createContext();
 
 export function GetDataContextProvider({ children }) {
   const [addCartData, setAddCartData] = useState([]);
+  console.log(addCartData)
   const [addCartLength, setAddCartLength] = useState(0);
   const [showLogin, setShowLogin] = useState(false);
   const GetAddCartData = async () => {
@@ -108,7 +109,10 @@ export function GetDataContextProvider({ children }) {
       const response = await axios.get(
         "https://boat-website-json-server.onrender.com/Add-to-cart"
       );
-      setAddCartData(response.data);
+      // setAddCartData(response.data);
+      const AddToCartProducts =response.data.map((product)=>({...product, quantity: product.quantity || 1}))
+      setAddCartData(AddToCartProducts)
+      console.log(AddToCartProducts)
       setAddCartLength(response.data.length);
     } catch (error) {
       console.log(error);
