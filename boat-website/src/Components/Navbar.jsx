@@ -41,11 +41,10 @@ export default function Navbar() {
             </div>
             {/* Navbar for large screens */}
             <div className="navbar hidden lg:flex lg:items-center gap-6">
-              <NavLink className="hover:font-medium transition-all" to={'/WhiteEarAnimation'}>Categories</NavLink>
+              <NavLink className="hover:font-medium transition-all">Categories</NavLink>
               <NavLink className="hover:font-medium transition-all">boAt Personalisation</NavLink>
               <NavLink className="hover:font-medium transition-all">Gift with boAt</NavLink>
               <NavLink className="hover:font-medium transition-all">Corporate Orders</NavLink>
-              <NavLink className="hover:font-medium transition-all">More</NavLink>
             </div>
           </div>
           <div className="flex justify-between items-center gap-2 lg:gap-5">
@@ -76,7 +75,6 @@ export default function Navbar() {
               <NavLink className="font-medium transition-all">boAt Personalisation</NavLink>
               <NavLink className="font-medium transition-all">Gift with boAt</NavLink>
               <NavLink className="font-medium transition-all">Corporate Orders</NavLink>
-              <NavLink className="font-medium transition-all">More</NavLink>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ import icon4 from "../Assets/Images/icon-4.svg";
 import lifestyle1 from "../Assets/Images/lifestyle-1.png";
 import lifestyle2 from "../Assets/Images/lifestyle-2.png";
 import lifestyle3 from "../Assets/Images/lifestyle-3.png";
-import lifestyle4 from "../Assets/Images/lifestyle-4.png";
+import lifestyle4 from "../Assets/Images/lifestyle-5.webp";
 
 import blackEarbudsImage_0001 from "../Assets/Images/Black_Earbuds/Black_Earbuds0001.jpg";
 import blackEarbudsImage_0002 from "../Assets/Images/Black_Earbuds/Black_Earbuds0002.jpg";

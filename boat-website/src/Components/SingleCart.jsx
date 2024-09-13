@@ -6,7 +6,7 @@ import { TiMinus } from "react-icons/ti";
 import { FiPlus } from "react-icons/fi";
 
 export default function SingleCart({ ele }) {
-  const { GetAddCartData, addCartLength } = useContext(getDataContext);
+  const { GetAddCartData } = useContext(getDataContext);
   const [loading, setLoading] = useState(false)
   const DeleteProduct = async (id) => {
     try {
@@ -35,8 +35,8 @@ export default function SingleCart({ ele }) {
       let response = await axios.patch(
         `https://boat-website-json-server.onrender.com/Add-to-cart/${id}`, {quantity}
       )
-      console.log(response.data)
       setLoading(false)
+      GetAddCartData()
     }
     catch(error){
       console.log(error)

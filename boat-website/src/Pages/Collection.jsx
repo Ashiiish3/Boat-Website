@@ -53,16 +53,6 @@ export default function Collection() {
         <h1 className="font-medium text-2xl mt-4 mb-8">{title}</h1>
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="border-[1px] bg-gray-100 p-2 rounded-lg w-full lg:w-48">
-            <label className="sr-only" htmlFor="filter">Filter By</label>
-            <select id="filter" className="w-full bg-transparent">
-              <option value="">Filter By</option>
-              <option value="">Alphabetically A-Z</option>
-              <option value="">Alphabetically Z-A</option>
-              <option value="">Price, low to high</option>
-              <option value="">Price, high to low</option>
-            </select>
-          </div>
-          <div className="border-[1px] bg-gray-100 p-2 rounded-lg w-full lg:w-48">
             <label className="sr-only" htmlFor="sort">Sort by</label>
             <select id="sort" className="w-full bg-transparent" onChange={HandleSortChange}>
               <option value="">Sort by Features</option>

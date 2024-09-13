@@ -13,8 +13,17 @@ export function AddToCartContextProvider({ children }) {
   const location = useLocation()
   const navigate = useNavigate();
   const postData = async (productId, id, GetAddCartData) => {
-    console.log(productId)
     try {
+      const cartResponse = await axios.get(
+        `https://boat-website-json-server.onrender.com/Add-to-cart`
+      );
+      const cartItems = cartResponse.data;
+      const isProductInCart = cartItems.find((item) => item.id === id);
+
+      if (isProductInCart) {
+        alert("Product is already in the cart.");
+        return;
+      }
       const response = await axios.get(
         `https://boat-website-json-server.onrender.com/SliderData/${productId}`
       );
@@ -28,7 +37,10 @@ export function AddToCartContextProvider({ children }) {
           alert("Product has been Added.");
           GetAddCartData();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err)
+          console.log("hii")
+        });
     } catch (error) {
       console.log(error);
     }
@@ -101,7 +113,7 @@ export const getDataContext = createContext();
 
 export function GetDataContextProvider({ children }) {
   const [addCartData, setAddCartData] = useState([]);
-  console.log(addCartData)
+  const [totalPrice, setTotalPrice] = useState(0)
   const [addCartLength, setAddCartLength] = useState(0);
   const [showLogin, setShowLogin] = useState(false);
   const GetAddCartData = async () => {
@@ -109,15 +121,22 @@ export function GetDataContextProvider({ children }) {
       const response = await axios.get(
         "https://boat-website-json-server.onrender.com/Add-to-cart"
       );
-      // setAddCartData(response.data);
       const AddToCartProducts =response.data.map((product)=>({...product, quantity: product.quantity || 1}))
       setAddCartData(AddToCartProducts)
-      console.log(AddToCartProducts)
       setAddCartLength(response.data.length);
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(()=>{
+    let total = 0;
+    addCartData.forEach((element) => {
+      const oneProductPrice = (element.new_price.replace(/,/g, '')*element.quantity)
+      total = total + oneProductPrice
+      return total
+    });
+    setTotalPrice(total)
+  },[addCartData])
   return (
     <getDataContext.Provider
       value={{
@@ -128,6 +147,7 @@ export function GetDataContextProvider({ children }) {
         setAddCartLength,
         showLogin,
         setShowLogin,
+        totalPrice
       }}
     >
       {children}
