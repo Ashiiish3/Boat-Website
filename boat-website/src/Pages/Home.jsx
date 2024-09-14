@@ -48,7 +48,6 @@ export default function Home() {
           </Swiper>
         </div>
         <Banner />
-        <WhiteEarAnimation />
         <Lifestyles />
         <BoatNavTabs />
       </div>

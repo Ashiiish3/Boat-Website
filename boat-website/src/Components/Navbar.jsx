@@ -26,6 +26,18 @@ export default function Navbar() {
       document.body.style.overflowY = "hidden";
     }
   }
+
+  const [showCategories, setShowCategories] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  useEffect(() => {
+    let timer;
+    if (!isHovered) {
+      timer = setTimeout(() => setShowCategories(false), 200);
+    } else {
+      setShowCategories(true);
+    }
+    return () => clearTimeout(timer);
+  }, [isHovered]);
   useEffect(() => {
     GetAddCartData()
   }, [addCartLength])
@@ -33,7 +45,7 @@ export default function Navbar() {
     <>
       { menuOpen && <div className="fixed left-0 right-0 top-0 bottom-0 z-10 bg-black opacity-50 w-full h-full"></div>}
       <nav className="border-b-[1px] border-gray-300 sticky bg-white top-0 w-full z-10">
-        <div className="w-[100%] lg:w-[94rem] h-[60px] lg:h-[82px] m-auto flex justify-between items-center px-3 lg:px-0">
+        <div className="relative w-[100%] lg:w-[94rem] h-[60px] lg:h-[82px] m-auto flex justify-between items-center px-3 lg:px-0">
           <div className="flex justify-between items-center gap-24">
             <div className="order-1 lg:order-none flex items-center gap-3">
               {menuOpen ? <RxCross2 className="menu-button" onClick={NavbarHandle} /> : <FiMenu className="menu-button"  onClick={NavbarHandle} /> }
@@ -41,10 +53,31 @@ export default function Navbar() {
             </div>
             {/* Navbar for large screens */}
             <div className="navbar hidden lg:flex lg:items-center gap-6">
-              <NavLink className="hover:font-medium transition-all">Categories</NavLink>
-              <NavLink className="hover:font-medium transition-all">boAt Personalisation</NavLink>
-              <NavLink className="hover:font-medium transition-all">Gift with boAt</NavLink>
-              <NavLink className="hover:font-medium transition-all">Corporate Orders</NavLink>
+              <div
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  >
+                  <p className="hover:font-medium transition-all cursor-pointer">
+                    Categories
+                  </p>
+                  {showCategories && (
+                    <ul className="bg-white absolute top-20 left-0 right-0 grid grid-cols-5 gap-4 p-8 w-[100%] border-[1px] border-gray-300">
+                      <li><NavLink className="flex items-center justify-start" to="/Collection/wireless-earbuds" onClick={()=>setIsHovered(false)}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/32011675-2ad8-4b99-9787-895caf201d28_600x.png?v=1642405569" alt="" className="w-10 me-3" /><p>True Wireless Earbuds</p></NavLink></li>
+                      <li><NavLink className="flex items-center justify-start" to="/Collection/neckbands" onClick={()=>setIsHovered(false)}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Artboard4_b8ab8e06-45ab-40be-b6da-c35a63ff5bd3_600x.png?v=1713177293" alt="" className="w-10 me-3" /><p>Neckbands</p></NavLink></li>
+                      <li><NavLink className="flex items-center justify-start" to="/Collection/smart-watches" onClick={()=>setIsHovered(false)}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Chronos_Leather__5_-removebg-preview_500x.png?v=1690528562" alt="" className="w-10 me-3" /><p>Smart Watches</p></NavLink></li>
+                      <li><NavLink className="flex items-center justify-start" to="/Collection/headphones" onClick={()=>setIsHovered(false)}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main3_b6563f96-f1a1-4915-b686-d4e37232ec3c_600x.png?v=1685707922" alt="" className="w-10 me-3" /><p>Wireless Headphones</p></NavLink></li>
+                      <li><NavLink className="flex items-center justify-start" to="/Collection/wireless-speakers" onClick={()=>setIsHovered(false)}><img src="https://www.boat-lifestyle.com/cdn/shop/products/main-1_35ca2d35-3e30-49ec-bb17-dc55a1abc589_600x.png?v=1640073282" alt="" className="w-10 me-3" /><p>Wireless Speakers</p></NavLink></li>
+
+                      <li><NavLink className="flex items-center justify-start" to="/Collection/neckbands" onClick={()=>setIsHovered(false)}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main3_ab6a4439-77fc-4cc9-a63a-33368391fed7_600x.png?v=1646987536" alt="" className="w-10 me-3" /><p>Wired Earphones</p></NavLink></li>
+                      <li><NavLink className="flex items-center justify-start" to="/Collection/headphones" onClick={()=>setIsHovered(false)}><img src="https://www.boat-lifestyle.com/cdn/shop/products/450im_600x.png?v=1639990280" alt="" className="w-10 me-3" /><p>Wired Headphones</p></NavLink></li>
+                      <li><NavLink className="flex items-center justify-start" to="/Collection/smart-watches" onClick={()=>setIsHovered(false)}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/LunarConnect-FI_Black01_299d178c-7551-448a-bf0b-0c1d07b2e75e_600x.png?v=1695812751" alt="" className="w-10 me-3" /><p>Stylish Watches</p></NavLink></li>
+                      <li><NavLink className="flex items-center justify-start" to="/Collection/wireless-speakers" onClick={()=>setIsHovered(false)}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/e4faf0d0-1ce3-4a3c-8825-fbf5487b6611_600x.png?v=1625045119" alt="" className="w-10 me-3" /><p>Party Speakers</p></NavLink></li>
+                    </ul>
+                  )}
+                </div>
+              <NavLink className="hover:font-medium transition-all" to={'/Collection/smart-watches'}>boAt Personalisation</NavLink>
+              <NavLink className="hover:font-medium transition-all" to={'/GiftWithBoat'}>Gift with boAt</NavLink>
+              <NavLink className="hover:font-medium transition-all" to={'/CorporateOrder'}>Corporate Orders</NavLink>
             </div>
           </div>
           <div className="flex justify-between items-center gap-2 lg:gap-5">
@@ -71,10 +104,24 @@ export default function Navbar() {
           {/* Navbar for small screens  */}
           <div className={`fixed top-14 left-0 h-full w-[95%] bg-white shadow-lg z-50 transform ${ menuOpen ? "translate-x-0" : "-translate-x-full" } transition-transform duration-300 lg:hidden`}>
             <div className="flex flex-col items-start p-6 gap-4">
-              <NavLink className="font-medium transition-all">Categories</NavLink>
-              <NavLink className="font-medium transition-all">boAt Personalisation</NavLink>
-              <NavLink className="font-medium transition-all">Gift with boAt</NavLink>
-              <NavLink className="font-medium transition-all">Corporate Orders</NavLink>
+              <div className="font-medium transition-all">
+                <button onclick="toggleAccordion(1)" className="w-full flex justify-between items-center py-5 text-slate-800">
+                  <span>Categories</span>
+                  <span id="icon-1" className="text-slate-800 transition-transform duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">
+                      <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                    </svg>
+                  </span>
+                </button>
+                <div id="content-1" className="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                  <div className="pb-5 text-sm text-slate-500">
+                    Material Tailwind is a framework that enhances Tailwind CSS with additional styles and components.
+                  </div>
+                </div>
+              </div>
+              <NavLink className="font-medium transition-all" to={'/Collection/smart-watches'} onClick={NavbarHandle}>boAt Personalisation</NavLink>
+              <NavLink className="font-medium transition-all" to={'/GiftWithBoat'} onClick={NavbarHandle}>Gift with boAt</NavLink>
+              <NavLink className="font-medium transition-all" to={'/CorporateOrder'} onClick={NavbarHandle}>Corporate Orders</NavLink>
             </div>
           </div>
         </div>

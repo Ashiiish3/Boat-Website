@@ -17,7 +17,7 @@ export default function Collection() {
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     getData();
-  }, [sortOrder]);
+  }, [sortOrder, id]);
   const getData = async () => {
     try {
       const response = await axios.get(`https://boat-website-json-server.onrender.com/SliderData/${id}`
