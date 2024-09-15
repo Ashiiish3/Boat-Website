@@ -1,13 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { IoStar } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
 import { AddToCartContext, getDataContext } from '../ContextApi/AddToCartContext'
 import SearchError from '../Components/SearchError'
+import Loader from '../Components/Loader'
 
 export default function SearchProducts() {
   const {filterData} = useContext(AddToCartContext)
   const {postData, query, searchProductId, setSortOrder} = useContext(AddToCartContext)
   const {GetAddCartData} = useContext(getDataContext)
+
   localStorage.setItem("collection", searchProductId)
   const HandleSortChange = (e) => {
     setSortOrder(e.target.value);
@@ -18,16 +20,6 @@ export default function SearchProducts() {
         <div className="w-full lg:w-[94rem] m-auto py-3">
           <h6 className="flex items-center text-md mb-5">Showing Results <span className='ms-1 font-medium'>"{query}"</span></h6>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="border-[1px] bg-gray-100 p-2 rounded-lg w-full lg:w-48">
-              <label className="sr-only" htmlFor="filter">Filter By</label>
-              <select id="filter" className="w-full bg-transparent">
-                <option value="">Filter By</option>
-                <option value="">Alphabetically A-Z</option>
-                <option value="">Alphabetically Z-A</option>
-                <option value="">Price, low to high</option>
-                <option value="">Price, high to low</option>
-              </select>
-            </div>
             <div className="border-[1px] bg-gray-100 p-2 rounded-lg w-full lg:w-48">
               <label className="sr-only" htmlFor="sort">Sort by</label>
               <select id="sort" className="w-full bg-transparent" onChange={HandleSortChange}>

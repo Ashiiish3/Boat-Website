@@ -39,7 +39,6 @@ export function AddToCartContextProvider({ children }) {
         })
         .catch((err) => {
           console.log(err)
-          console.log("hii")
         });
     } catch (error) {
       console.log(error);

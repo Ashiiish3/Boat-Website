@@ -38,7 +38,6 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((res) => {
         alert("You are logged in Successfully using Google.");
-        console.log(res);
         setShowLogin(!showLogin);
       })
       .catch((err) => console.log(err));

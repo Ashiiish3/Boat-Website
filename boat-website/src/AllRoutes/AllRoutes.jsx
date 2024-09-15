@@ -22,7 +22,11 @@ export default function AllRoutes() {
           </PrivatePage>
         }
       ></Route>
-      <Route path="/Description/:id" element={<Description />}></Route>
+      <Route path="/Description/:id" element={
+        <PrivatePage>
+          <Description />
+        </PrivatePage>
+        }></Route>
       <Route path="/GiftWithBoat" element={<GiftWithBoat />}></Route>
       <Route path="/CorporateOrder" element={<CorporateOrder />}></Route>
       <Route path="/AddToCart" element={<AddToCart />}></Route>

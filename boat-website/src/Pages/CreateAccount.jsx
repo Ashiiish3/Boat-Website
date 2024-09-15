@@ -18,15 +18,13 @@ export default function CreateAccount() {
   };
   const SubmitSignUpForm = (e) => {
     e.preventDefault();
-    console.log(signUpData);
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
         setShowLogin(!showLogin);
-        console.log(res);
+        alert("Your Account has been Created.");
+        setSignUpData(signUpObj);
       })
       .catch((err) => console.log(err));
-    alert("Your Account has been Created.");
-    setSignUpData(signUpObj);
   };
   return (
     <div className="px-4 sm:px-6 md:px-8 lg:px-10">

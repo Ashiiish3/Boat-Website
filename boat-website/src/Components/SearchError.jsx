@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import errorImage from '../Assets/Images/search_error_image.svg'
+import LoaingImage from '../Assets/Images/Boat-Loader.gif'
 
 export default function SearchError() {
-  return (
+  const [loading, setLoading] = useState(true)
+  useEffect(()=>{
+    setInterval(() => {
+      setLoading(false)
+    }, 1500);
+  },[])
+
+  return loading ? <p><img src={LoaingImage} alt="" className='m-auto mt-5 w-32 ' /></p> : (
     <div>
         <div className='search-error-box h-[270px] w-[270px] lg:w-[400px] m-auto text-center'>
             <img src={errorImage} alt="" className='m-auto' />

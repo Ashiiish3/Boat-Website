@@ -14,6 +14,10 @@ export default function Navbar() {
   const { GetAddCartData, addCartLength } = useContext(getDataContext)
   const { showLogin, setShowLogin } = useContext(getDataContext)
   const {setSearch, search} = useContext(AddToCartContext)
+  const [activeIndex, setActiveIndex] = useState(null);
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
   const ChangeInputHandle = (event) => {
     setSearch(event.target.value);
   };
@@ -104,8 +108,8 @@ export default function Navbar() {
           {/* Navbar for small screens  */}
           <div className={`fixed top-14 left-0 h-full w-[95%] bg-white shadow-lg z-50 transform ${ menuOpen ? "translate-x-0" : "-translate-x-full" } transition-transform duration-300 lg:hidden`}>
             <div className="flex flex-col items-start p-6 gap-4">
-              <div className="font-medium transition-all">
-                <button onclick="toggleAccordion(1)" className="w-full flex justify-between items-center py-5 text-slate-800">
+              <div className="font-medium transition-all w-full">
+                <button onClick={()=>toggleAccordion(1)} className="w-full flex justify-between items-center text-slate-800">
                   <span>Categories</span>
                   <span id="icon-1" className="text-slate-800 transition-transform duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">
@@ -113,15 +117,26 @@ export default function Navbar() {
                     </svg>
                   </span>
                 </button>
-                <div id="content-1" className="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                <div id="content-1" className={`overflow-hidden transition-max-height duration-300 ${activeIndex === 1 ? "max-h-96" : "max-h-0"}`}>
                   <div className="pb-5 text-sm text-slate-500">
-                    Material Tailwind is a framework that enhances Tailwind CSS with additional styles and components.
+                    <ul className="grid grid-cols-3 mt-5 gap-5">
+                      <li><NavLink className="text-center" to="/Collection/wireless-earbuds" onClick={NavbarHandle}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/32011675-2ad8-4b99-9787-895caf201d28_600x.png?v=1642405569" alt="" className="w-16 m-auto" /><p>True Wireless Earbuds</p></NavLink></li>
+                      <li><NavLink className="text-center" to="/Collection/neckbands" onClick={NavbarHandle}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Artboard4_b8ab8e06-45ab-40be-b6da-c35a63ff5bd3_600x.png?v=1713177293" alt="" className="w-16 m-auto" /><p>Neckbands</p></NavLink></li>
+                      <li><NavLink className="text-center" to="/Collection/smart-watches" onClick={NavbarHandle}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Chronos_Leather__5_-removebg-preview_500x.png?v=1690528562" alt="" className="w-16 m-auto" /><p>Smart Watches</p></NavLink></li>
+                      <li><NavLink className="text-center" to="/Collection/headphones" onClick={NavbarHandle}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main3_b6563f96-f1a1-4915-b686-d4e37232ec3c_600x.png?v=1685707922" alt="" className="w-16 m-auto" /><p>Wireless Headphones</p></NavLink></li>
+                      <li><NavLink className="text-center" to="/Collection/wireless-speakers" onClick={NavbarHandle}><img src="https://www.boat-lifestyle.com/cdn/shop/products/main-1_35ca2d35-3e30-49ec-bb17-dc55a1abc589_600x.png?v=1640073282" alt="" className="w-16 m-auto" /><p>Wireless Speakers</p></NavLink></li>
+
+                      <li><NavLink className="text-center" to="/Collection/neckbands" onClick={NavbarHandle}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main3_ab6a4439-77fc-4cc9-a63a-33368391fed7_600x.png?v=1646987536" alt="" className="w-16 m-auto" /><p>Wired Earphones</p></NavLink></li>
+                      <li><NavLink className="text-center" to="/Collection/headphones" onClick={NavbarHandle}><img src="https://www.boat-lifestyle.com/cdn/shop/products/450im_600x.png?v=1639990280" alt="" className="w-16 m-auto" /><p>Wired Headphones</p></NavLink></li>
+                      <li><NavLink className="text-center" to="/Collection/smart-watches" onClick={NavbarHandle}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/LunarConnect-FI_Black01_299d178c-7551-448a-bf0b-0c1d07b2e75e_600x.png?v=1695812751" alt="" className="w-16 m-auto" /><p>Stylish Watches</p></NavLink></li>
+                      <li><NavLink className="text-center" to="/Collection/wireless-speakers" onClick={NavbarHandle}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/e4faf0d0-1ce3-4a3c-8825-fbf5487b6611_600x.png?v=1625045119" alt="" className="w-16 m-auto" /><p>Party Speakers</p></NavLink></li>
+                    </ul>
                   </div>
                 </div>
               </div>
-              <NavLink className="font-medium transition-all" to={'/Collection/smart-watches'} onClick={NavbarHandle}>boAt Personalisation</NavLink>
-              <NavLink className="font-medium transition-all" to={'/GiftWithBoat'} onClick={NavbarHandle}>Gift with boAt</NavLink>
-              <NavLink className="font-medium transition-all" to={'/CorporateOrder'} onClick={NavbarHandle}>Corporate Orders</NavLink>
+              <NavLink className="font-medium transition-all w-full text-start" to={'/Collection/smart-watches'} onClick={NavbarHandle}>boAt Personalisation</NavLink>
+              <NavLink className="font-medium transition-all w-full text-start" to={'/GiftWithBoat'} onClick={NavbarHandle}>Gift with boAt</NavLink>
+              <NavLink className="font-medium transition-all w-full text-start" to={'/CorporateOrder'} onClick={NavbarHandle}>Corporate Orders</NavLink>
             </div>
           </div>
         </div>
