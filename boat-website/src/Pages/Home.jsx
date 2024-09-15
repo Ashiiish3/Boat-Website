@@ -14,7 +14,6 @@ import "swiper/css/pagination";
 import Banner from "../Components/Banner";
 import Lifestyles from "../Components/Lifestyles";
 import BoatNavTabs from "../Components/BoatNavTabs";
-import WhiteEarAnimation from "../Components/WhiteEarAnimation";
 
 export default function Home() {
   const setting = {

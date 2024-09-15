@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { IoStar } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
 import { AddToCartContext, getDataContext } from '../ContextApi/AddToCartContext'
 import SearchError from '../Components/SearchError'
-import Loader from '../Components/Loader'
 
 export default function SearchProducts() {
   const {filterData} = useContext(AddToCartContext)
