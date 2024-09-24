@@ -66,7 +66,7 @@ export default function Description() {
               <img
                 src={currentColor.images && currentColor.images[index]}
                 alt=""
-                className="m-auto rounded-xl w-full lg:w-[90%] h-[300px] sm:h-[450px] lg:h-[600px] object-cover border-[1px] bg-[#E1E1E1]"
+                className="m-auto rounded-xl w-full lg:w-[80%] h-[300px] sm:h-[450px] lg:h-[600px] object-cover border-[1px] bg-[#E1E1E1]"
               />
             </div>
             <div className="text-start">
@@ -114,7 +114,7 @@ export default function Description() {
                   descriptionData.image_url.map((el, index) => (
                     <button
                       key={index}
-                      className="text-white h-[25px] w-[25px] sm:h-[30px] sm:w-[30px] rounded-full me-2 border-[1px]"
+                      className="text-white h-[25px] w-[25px] sm:h-[30px] sm:w-[30px] rounded-full me-2 border-[1px] border-gray-400"
                       style={{ backgroundColor: el.color }}
                       onClick={() => HandleColorChange(el)}
                     ></button>

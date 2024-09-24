@@ -4,3 +4,8 @@
         font-size: 26px;
     }
 }
+@media (min-width: 1024px) and (max-width: 1525px) {
+    .lg\:w-\[94rem\] {
+        width: 100%;
+    }
+}

@@ -9,12 +9,12 @@ export default function AddToCart() {
   }, [addCartLength]);
   return (
     <div className="w-full max-w-[94rem] m-auto grid lg:grid-flow-col gap-5 px-4 sm:px-6 md:px-0 mb-4">
-      <div className="grid grid-cols-1 sm:grid-cols-3 mt-5 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 mt-5 gap-5 ms-2">
         {addCartData.map((ele, ind) => (
           <SingleCart key={ind} ele={ele} />
         ))}
       </div>
-      <div className="w-[300px] h-[195px] mt-5 rounded-lg border-[1px] py-3 bg-gray-50 m-auto">
+      <div className="w-[300px] h-[195px] mt-5 rounded-lg border-[1px] py-3 bg-gray-50 m-auto me-2">
         <h1 className="text-start px-4 text-gray-500 font-medium uppercase pb-3">
           Price Details
         </h1>

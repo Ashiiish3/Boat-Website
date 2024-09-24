@@ -48,7 +48,7 @@ export default function Navbar() {
   return (
     <>
       { menuOpen && <div className="fixed left-0 right-0 top-0 bottom-0 z-10 bg-black opacity-50 w-full h-full"></div>}
-      <nav className="border-b-[1px] border-gray-300 sticky bg-white top-0 w-full z-10">
+      <nav className="border-b-[1px] border-gray-300 sticky bg-white top-0 w-full z-10 lg:px-3">
         <div className="relative w-[100%] lg:w-[94rem] h-[60px] lg:h-[82px] m-auto flex justify-between items-center px-3 lg:px-0">
           <div className="flex justify-between items-center gap-24">
             <div className="order-1 lg:order-none flex items-center gap-3">
