@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getDataContext } from "../ContextApi/AddToCartContext";
 import SingleCart from "../Components/SingleCart";
+import Payment from "./Payment";
 
 export default function AddToCart() {
   const { GetAddCartData, addCartData, addCartLength, totalPrice } = useContext(getDataContext);
+  const [check, setCheck] = useState(true)
   useEffect(() => {
     GetAddCartData();
   }, [addCartLength]);
@@ -14,7 +16,7 @@ export default function AddToCart() {
           <SingleCart key={ind} ele={ele} />
         ))}
       </div>
-      <div className="w-[300px] h-[195px] mt-5 rounded-lg border-[1px] py-3 bg-gray-50 m-auto me-2">
+      <div className="w-[300px] h-[240px] mt-5 rounded-lg border-[1px] py-3 bg-gray-50 m-auto me-2">
         <h1 className="text-start px-4 text-gray-500 font-medium uppercase pb-3">
           Price Details
         </h1>
@@ -30,9 +32,12 @@ export default function AddToCart() {
           </div>
           <hr />
           <div className="flex justify-between mt-3">
-            <p className="font-medium text-lg">Total Amount</p>
+            <p className="font-medium text-lg">Total Amount :</p>
             <p className="font-medium text-lg">₹ {totalPrice}</p>
           </div>
+        </div>
+        <div className="my-4 mx-4">
+          { check ? <h1 onClick={()=>setCheck(!check)} className="cursor-pointer bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition font-medium">Checkout</h1> : <Payment totalPrice={totalPrice} />}
         </div>
       </div>
     </div>
