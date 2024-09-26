@@ -1,19 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { AddToCartContextProvider, GetDataContextProvider } from './ContextApi/AddToCartContext';
+import {
+  AddToCartContextProvider,
+  GetDataContextProvider,
+} from "./ContextApi/AddToCartContext";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-  <GetDataContextProvider>
-  <AddToCartContextProvider>
-    <App />
-  </AddToCartContextProvider>
-  </GetDataContextProvider>
+    <GetDataContextProvider>
+        <AddToCartContextProvider>
+          <App />
+        </AddToCartContextProvider>
+    </GetDataContextProvider>
   </BrowserRouter>
 );
 

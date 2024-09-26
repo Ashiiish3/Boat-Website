@@ -35,11 +35,10 @@ export default function Home() {
               return (
                 <SwiperSlide key={index}>
                   <div className="h-full w-full">
-                    <img
-                      src={img.image}
-                      alt="image"
-                      className="h-[91vh] w-full object-cover"
-                    />
+                    <picture>
+                      <source media="(max-width:700px)" srcSet={img.image_res} />
+                      <img src={img.image} alt="image" className="lg:h-[65vh] xl:h-[80vh] 2xl:h-[91vh] w-full object-cover"/>
+                    </picture>
                   </div>
                 </SwiperSlide>
               );

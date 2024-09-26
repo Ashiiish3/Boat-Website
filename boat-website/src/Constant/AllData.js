@@ -4,6 +4,11 @@ import slider3 from "../Assets/Images/slider-3.webp";
 import slider4 from "../Assets/Images/slider-4.webp";
 import slider5 from "../Assets/Images/slider-5.jpg";
 import slider6 from "../Assets/Images/slider-6.webp";
+import slider_res_1 from "../Assets/Images/slider-res-1.webp";
+import slider_res_2 from "../Assets/Images/slider-res-2.webp";
+import slider_res_3 from "../Assets/Images/slider-res-3.webp";
+import slider_res_4 from "../Assets/Images/slider-res-4.webp";
+import slider_res_5 from "../Assets/Images/slider-res-5.webp";
 import icon1 from "../Assets/Images/icon-1.svg";
 import icon2 from "../Assets/Images/icon-2.svg";
 import icon3 from "../Assets/Images/icon-3.svg";
@@ -455,21 +460,27 @@ import whiteEarbudsImage_0277 from "../Assets/Images/White_Earbuds/White_Earbuds
 export const ImageSlider = [
   {
     image: slider1,
+    image_res: slider_res_1
   },
   {
     image: slider2,
+    image_res: slider_res_2
   },
   {
     image: slider3,
+    image_res: slider_res_3
   },
   {
     image: slider4,
+    image_res: slider_res_4
   },
   {
     image: slider5,
+    image_res: slider_res_5
   },
   {
     image: slider6,
+    image_res: slider_res_2
   },
 ];
 

@@ -22,25 +22,25 @@ export default function Banner() {
       <div className="lg:w-[94rem] py-6 m-auto">
         <div className="w-[95%] lg:w-[60%] m-auto grid grid-cols-4">
           <div className="m-auto">
-            <img src={Icons.icon1} alt="" className="w-28" />
+            <img src={Icons.icon1} alt="" className="lg:w-28 m-auto" />
             <p className="text-[12px] lg:text-lg">
               <span className="font-bold">1 year </span>Warranty
             </p>
           </div>
           <div className="m-auto">
-            <img src={Icons.icon2} alt="" className="w-28" />
+            <img src={Icons.icon2} alt="" className="lg:w-28 m-auto" />
             <p className="text-[12px] lg:text-lg">
               <span className="font-bold">7-day </span>Replacement
             </p>
           </div>
           <div className="m-auto">
-            <img src={Icons.icon3} alt="" className="w-28" />
+            <img src={Icons.icon3} alt="" className="lg:w-28 m-auto" />
             <p className="text-[12px] lg:text-lg">
               <span className="font-bold">Free Express </span>Delivery
             </p>
           </div>
           <div>
-            <img src={Icons.icon4} alt="" className="m-auto w-28" />
+            <img src={Icons.icon4} alt="" className="lg:w-28 m-auto" />
             <p className="text-[12px] lg:text-lg">
               <span className="font-bold">GST </span>Billing
             </p>

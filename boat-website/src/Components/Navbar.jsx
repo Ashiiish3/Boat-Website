@@ -8,13 +8,18 @@ import { AddToCartContext, getDataContext } from "../ContextApi/AddToCartContext
 import { FiMenu } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import Login from "../Pages/Login";
+import profile_img from '../Assets/Images/Profile-photo.png'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from "../Services/Firebase";
+import UserProfile from "../Pages/UserProfile";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { GetAddCartData, addCartLength } = useContext(getDataContext)
-  const { showLogin, setShowLogin } = useContext(getDataContext)
+  const {GetAddCartData, addCartLength, showLogin, setShowLogin, showProfile, setShowProfile } = useContext(getDataContext)
   const {setSearch, search} = useContext(AddToCartContext)
   const [activeIndex, setActiveIndex] = useState(null);
+  const [user] = useAuthState(auth);
+
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
@@ -95,10 +100,12 @@ export default function Navbar() {
                   onChange={ChangeInputHandle}
                 />
             </div>
-            <div className="flex gap-2 lg:gap-3">
-              <NavLink onClick={() => setShowLogin(true)}>
+            <div className="flex items-center gap-2 lg:gap-3">
+              {
+              user ? <img src={user.photoURL || profile_img } className="w-7 h-7 cursor-pointer rounded-full border-2 border-gray-300 shadow-lg object-cover" onClick={()=>setShowProfile(true)} /> : <NavLink onClick={() => setShowLogin(true)}>
                 <IoPersonOutline className="text-xl" />
               </NavLink>
+              }
               <NavLink to={"/AddToCart"} className="relative">
                 <HiOutlineShoppingBag className="text-xl" />
                 <div className="absolute inline-flex items-center justify-center w-4 h-4 text-[10px] font-bold text-white bg-red-500 rounded-full -top-2 -end-2 p-2">{addCartLength}</div>
@@ -117,7 +124,7 @@ export default function Navbar() {
                     </svg>
                   </span>
                 </button>
-                <div id="content-1" className={`overflow-hidden transition-max-height duration-300 ${activeIndex === 1 ? "max-h-96" : "max-h-0"}`}>
+                <div id="content-1" className={`overflow-hidden transition-max-height overflow-y-scroll duration-300 ${activeIndex === 1 ? "max-h-96" : "max-h-0"}`}>
                   <div className="pb-5 text-sm text-slate-500">
                     <ul className="grid grid-cols-3 mt-5 gap-5">
                       <li><NavLink className="text-center" to="/Collection/wireless-earbuds" onClick={NavbarHandle}><img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/32011675-2ad8-4b99-9787-895caf201d28_600x.png?v=1642405569" alt="" className="w-16 m-auto" /><p>True Wireless Earbuds</p></NavLink></li>
@@ -141,6 +148,7 @@ export default function Navbar() {
           </div>
         </div>
         {showLogin && <Login />}
+        {showProfile && <UserProfile />}
       </nav>
     </>
   );

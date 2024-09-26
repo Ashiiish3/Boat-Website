@@ -1,4 +1,4 @@
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 1023px) {
     .menu-button{
         display: block;
         font-size: 26px;

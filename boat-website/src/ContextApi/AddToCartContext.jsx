@@ -115,6 +115,7 @@ export function GetDataContextProvider({ children }) {
   const [totalPrice, setTotalPrice] = useState(0)
   const [addCartLength, setAddCartLength] = useState(0);
   const [showLogin, setShowLogin] = useState(false);
+  const [showProfile, setShowProfile] = useState(false)
   const GetAddCartData = async () => {
     try {
       const response = await axios.get(
@@ -146,7 +147,9 @@ export function GetDataContextProvider({ children }) {
         setAddCartLength,
         showLogin,
         setShowLogin,
-        totalPrice
+        totalPrice,
+        showProfile,
+        setShowProfile
       }}
     >
       {children}
